@@ -1,0 +1,22 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - name: Rebuild WASM client
+    command: trunk watch
+    init: cd app && trunk build # Prebuild app so running trunk-serve would be much faster
+  - name: Rebuild server
+    command: cargo watch -x run # Rocket server
+    openMode: split-right
+
+ports:
+  - port: 8000
+    onOpen: open-preview
+
+github:
+  prebuilds:
+    master: true
+    branches: true
+    pullRequests: true
+    pullRequestsFromForks: true
+    

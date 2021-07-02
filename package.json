@@ -1,0 +1,12 @@
+{
+  "name": "sycamore-netlify-functions",
+  "version": "0.1.0",
+  "description": "This example shows how to deploy an isomorphic Sycamore app on Netlify Functions.",
+  "scripts": {
+    "dev": "make build && netlify dev"
+  },
+  "author": "",
+  "devDependencies": {
+    "netlify-cli": "^4.0.5"
+  }
+}
