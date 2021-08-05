@@ -1,6 +1,6 @@
 [[redirects]]
 from = "/*"
-to = "functions/sycamore-netlify-functions"
+to = ".netlify/functions/sycamore-netlify-functions"
 status = 200
 
 [build]
