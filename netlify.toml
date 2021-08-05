@@ -7,11 +7,3 @@ status = 200
 command = "make build"
 publish = "public"
 functions = "functions"
-
-[dev]
-command = "make build"
-publish = "public"
-functions = "functions"
-port = 8000
-targetPort = 8080
-framework = "#custom"
