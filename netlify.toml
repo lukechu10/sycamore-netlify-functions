@@ -5,5 +5,5 @@ status = 200
 
 [build]
 command = "make build"
-publish = "/"
+publish = "public"
 functions = "functions"
