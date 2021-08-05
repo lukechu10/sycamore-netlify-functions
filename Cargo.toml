@@ -8,4 +8,9 @@ edition = "2018"
 
 [dependencies]
 netlify_lambda_http = "0.2"
-tokio = { version="1.0.1", features=["macros"] }
+rocket = "0.5.0-rc.1"
+tokio = { version = "1.0.1", features = ["macros"] }
+cfg-if = "1.0.0"
+
+[features]
+lambda = []
