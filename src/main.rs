@@ -1,5 +1,5 @@
 use cfg_if::cfg_if;
-use rocket::{get, routes, Build, Rocket};
+use rocket::{fs::FileServer, get, routes, Build, Rocket};
 
 #[get("/hello")]
 fn hello() -> &'static str {
@@ -7,7 +7,9 @@ fn hello() -> &'static str {
 }
 
 fn client() -> Rocket<Build> {
-    rocket::build().mount("/", routes![hello])
+    rocket::build()
+        .mount("/", routes![hello])
+        .mount("/", FileServer::from("public"))
 }
 
 cfg_if! {
