@@ -25,7 +25,7 @@ cfg_if! {
         async fn main(req: Request, _: Context) -> Result<impl IntoResponse, LambdaError> {
             let client = Client::untracked(client()).await.unwrap();
 
-            let client_req = client.get(req.uri().to_string());
+            let client_req = client.get(req.uri().path_and_query().unwrap().as_str());
             let client_res = client_req.dispatch().await;
 
             let status = client_res.status().code;
