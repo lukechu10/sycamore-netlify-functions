@@ -7,9 +7,7 @@ fn hello() -> &'static str {
 }
 
 fn client() -> Rocket<Build> {
-    rocket::build()
-        .mount("/", routes![hello])
-        .mount("/", FileServer::from("public"))
+    rocket::build().mount("/", routes![hello])
 }
 
 cfg_if! {
@@ -40,7 +38,7 @@ cfg_if! {
     } else {
         #[rocket::launch]
         fn launch() -> _ {
-            client()
+            client().mount("/", FileServer::from("public"))
         }
     }
 }
