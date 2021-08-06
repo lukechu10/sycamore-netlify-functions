@@ -16,21 +16,21 @@ cfg_if! {
             lambda::{lambda, Context},
             IntoResponse, Request, Response,
         };
-        use rocket::local::blocking::Client;
+        use rocket::local::asynchronous::Client;
 
         type LambdaError = Box<dyn std::error::Error + Sync + Send>;
 
         #[lambda(http)]
         #[tokio::main]
         async fn main(req: Request, _: Context) -> Result<impl IntoResponse, LambdaError> {
-            let client = Client::untracked(client()).unwrap();
+            let client = Client::untracked(client()).await.unwrap();
 
             let client_req = client.get(req.uri().to_string());
-            let client_res = client_req.dispatch();
+            let client_res = client_req.dispatch().await;
 
             let status = client_res.status().code;
 
-            let body = client_res.into_bytes().unwrap();
+            let body = client_res.into_bytes().await.unwrap();
             let res = Response::builder().status(status).body(body).unwrap();
 
             Ok(res)
